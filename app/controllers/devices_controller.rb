@@ -3,8 +3,18 @@ class DevicesController < ApplicationController
 
   # GET /devices
   # GET /devices.json
+
+  # def index
+  #   @devices = Device.all
+  # end
+
   def index
-    @devices = Device.all
+    @devices = Device.order(:id)
+    respond_to do |format|
+      format.html
+      format.csv { send_data @devices.to_csv }
+      format.xls # { send_data @products.to_csv(col_sep: "\t") }
+    end
   end
 
   # GET /devices/1
