@@ -10,12 +10,14 @@ xmlns:html="http://www.w3.org/TR/REC-html40">
     <Row>
       <Cell><Data ss:Type="String">ID</Data></Cell>
       <Cell><Data ss:Type="String">IMEI</Data></Cell>
+      <Cell><Data ss:Type="String">TimeStamp</Data></Cell>
       <Cell><Data ss:Type="String">Packege</Data></Cell>
     </Row>
     <% @devices.each do |device| %>
     <Row>
       <Cell><Data ss:Type="Number"><%= device.id %></Data></Cell>
       <Cell><Data ss:Type="String"><%= device.imei %></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= device.timestamp %></Data></Cell>
       <Cell><Data ss:Type="String"><%= device.packege %></Data></Cell>
     </Row>
     <% end %>

@@ -9,7 +9,12 @@ class DevicesController < ApplicationController
   # end
 
   def index
-    @devices = Device.order(:id)
+
+    @selected_imei = params[:selected_imei]
+
+    @devices_all = Device.all
+
+    @devices = Device.search(@selected_imei)
     respond_to do |format|
       format.html
       format.csv { send_data @devices.to_csv }

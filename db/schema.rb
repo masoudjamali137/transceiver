@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161015120225) do
+ActiveRecord::Schema.define(version: 20161023100856) do
 
   create_table "devices", force: :cascade do |t|
     t.string   "imei",       limit: 255
+    t.integer  "timestamp",  limit: 4
     t.string   "packege",    limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false

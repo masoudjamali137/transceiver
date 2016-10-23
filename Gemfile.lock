@@ -39,6 +39,7 @@ GEM
     airbrussh (1.1.1)
       sshkit (>= 1.6.1, != 1.7.0)
     arel (6.0.3)
+    behzadi_persian_datepicker (0.1.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     builder (3.2.2)
@@ -97,6 +98,7 @@ GEM
     net-ssh (3.2.0)
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
+    parsi-date (0.3.1)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -169,6 +171,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  behzadi_persian_datepicker
   byebug
   capistrano (~> 3.6.1)
   capistrano-bundler (~> 1.1.4)
@@ -178,6 +181,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   mysql2 (>= 0.3.13, < 0.5)
+  parsi-date
   rails (= 4.2.6)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
