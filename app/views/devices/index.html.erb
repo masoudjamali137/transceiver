@@ -19,7 +19,11 @@
   <% @uniq_imei = @uniq_imei.uniq %>
 
   <% @uniq_imei.each do |imei| %>
-  <%= link_to "Select IMEI ( #{imei} )", devices_path(:format => "xls", :selected_imei => imei)%> <br>
+
+  <%= "#{imei} >> " %> 
+  <%= link_to "Download Excel", devices_path(:format => "xls", :selected_imei => imei)%>  
+  <%= " | " %>
+  <%= link_to "Download CSV", devices_path(:format => "csv", :selected_imei => imei)%> <br>
   <% end %>
 
 <!--   <%= dt = Time.now%>  <br>

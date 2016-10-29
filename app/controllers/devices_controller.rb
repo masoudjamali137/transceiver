@@ -14,7 +14,7 @@ class DevicesController < ApplicationController
 
     @devices_all = Device.all
 
-    @devices = Device.search(@selected_imei)
+    @devices = Device.sorted.search(@selected_imei)
     respond_to do |format|
       format.html
       format.csv { send_data @devices.to_csv }

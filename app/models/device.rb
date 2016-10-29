@@ -8,6 +8,8 @@ class Device < ActiveRecord::Base
     where(["imei LIKE ?", "%#{query}%"])
   }
 
+  scope :sorted, lambda {order("devices.timestamp ASC")}
+
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|
 
