@@ -14,29 +14,53 @@
   <% (@uniq_imei ||= []) << device.imei %>
   <% end %>
 
-  <% @uniq_imei.inspect %> <br>
+  <% @uniq_imei.inspect %> 
 
   <% @uniq_imei = @uniq_imei.uniq %>
 
-  <% @uniq_imei.each do |imei| %>
+  <!-- ----------------------------------------------- -->
 
-  <%= "#{imei} >> " %> 
-  <%= link_to "Download Excel", devices_path(:format => "xls", :selected_imei => imei)%>  
-  <%= " | " %>
-  <%= link_to "Download CSV", devices_path(:format => "csv", :selected_imei => imei)%> <br>
-  <% end %>
+  <div align="center">
 
-<!--   <%= dt = Time.now%>  <br>
-  <%= dt.to_time.to_i %>  <br>
+    <%= form_tag({:controller=>"devices", :action=>"index"}, method: :get) do %>
+    <%= date_field(:user, :born_on, value: "") %>
+    <%= submit_tag 'Submit Date', name: nil %>
+    <% end %>
 
-  <%= Date.civil(Time.now.year, Time.now.month, Time.now.day).to_parsi %>  <br>
-  
+    
 
-  <%= d = Date.civil(2012, 10, 30).to_parsi %>  <br>
-  <%= d.to_gregorian %>  <br> -->
+    <% if @selected_time.blank? == false %>
 
- 
- 
+      <% @sdate = @selected_time.to_s.split('"')[3].split('-') %>
+
+      <% if @sdate.blank? == false %>
+        <% @select_unixtime = Date.new(@sdate[0].to_i,@sdate[1].to_i,@sdate[2].to_i).to_time.to_i + (12600) %>
+      <% else %>
+        <% @select_unixtime = 0 %>
+      <% end %>
+
+    <% else %>
+      <% @select_unixtime = 0 %>
+    <% end %>
+
+    <%= DateTime.strptime("#{@select_unixtime}",'%s').strftime("%Y-%m-%d") %>
+    
+
+
+  </div>
+
+  <!-- ----------------------------------------------- -->
+
+  <div align="left">
+
+    <% @uniq_imei.each do |imei| %>
+    <%= "#{imei} >> " %> 
+    <%= link_to "Download Excel", devices_path(:format => "xls", :selected_imei => imei, :unix_time => @select_unixtime )%>
+    <%= " | " %>
+    <%= link_to "Download CSV", devices_path(:format => "csv", :selected_imei => imei, :unix_time => @select_unixtime )%> <br>
+    <% end %>
+
+  </div>
 
 </body>
 </html>

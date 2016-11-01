@@ -4,6 +4,10 @@ class Device < ActiveRecord::Base
     where(["imei LIKE ?", query])
   }
 
+  scope :search_time , lambda {|query| 
+    where(["timestamp > ?", query])
+  }
+
   scope :search_like , lambda {|query| 
     where(["imei LIKE ?", "%#{query}%"])
   }

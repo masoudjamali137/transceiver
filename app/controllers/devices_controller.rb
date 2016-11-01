@@ -11,10 +11,14 @@ class DevicesController < ApplicationController
   def index
 
     @selected_imei = params[:selected_imei]
+    @selected_time = params[:user]
+    @unix_time = params[:unix_time]
 
     @devices_all = Device.all
 
-    @devices = Device.sorted.search(@selected_imei)
+    
+    @devices = Device.sorted.search(@selected_imei).search_time(@unix_time)
+    
     respond_to do |format|
       format.html
       format.csv { send_data @devices.to_csv }
